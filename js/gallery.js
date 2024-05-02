@@ -1,3 +1,4 @@
+
 const images = [
       {
         preview:
@@ -95,10 +96,18 @@ const images = [
     gallery.addEventListener("click", selectImage);
 
     function selectImage(event) {
+        event.preventDefault();
+
         if (event.target.nodeName !== "IMG") {
             return;
         }
         const selectedImage = event.target.dataset.source;
         console.log(selectedImage);
+        
+        let instance = basicLightbox.create(`
+        <img src="${selectedImage}" width="1112px" height="640px">
+    `)
+        instance.show()
     }
+
 

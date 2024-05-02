@@ -42,3 +42,7 @@ body {
   height: 200px;
   flex-shrink: 0;
 }
+
+.gallery-image:hover {
+  cursor: url('./img/bxs_hand-down.png'), auto;
+}

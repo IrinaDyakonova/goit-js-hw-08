@@ -65,20 +65,8 @@ const images = [
     ];
 
     
-
+    //add images to gallery
     const gallery = document.querySelector('.gallery');
-    const itemImages = images.map(({ preview, original, description }) => 
-        `<li class="gallery-item">
-            <a class="gallery-link" href="${original}">
-                <img
-                class="gallery-image"
-                src="${preview}"
-                data-source="${original}"
-                alt="${description}"
-                />
-            </a>
-        </li>`
-    ).join('');
 
     const pairs = [];
     for (let i = 0; i < images.length; i += 3) {
@@ -102,3 +90,15 @@ const images = [
 
 
     gallery.insertAdjacentHTML('afterbegin', imagesMarkup);
+
+    //  click event handler add delegation
+    gallery.addEventListener("click", selectImage);
+
+    function selectImage(event) {
+        if (event.target.nodeName !== "IMG") {
+            return;
+        }
+        const selectedImage = event.target.dataset.source;
+        console.log(selectedImage);
+    }
+

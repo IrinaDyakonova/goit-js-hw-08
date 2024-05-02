@@ -79,6 +79,26 @@ const images = [
             </a>
         </li>`
     ).join('');
-    console.log(itemImages);
-    
-    gallery.insertAdjacentHTML('afterbegin', itemImages);
+
+    const pairs = [];
+    for (let i = 0; i < images.length; i += 3) {
+        pairs.push(images.slice(i, i + 3));
+    }
+
+    const imagesMarkup = pairs.map(pair => 
+        `<li class="gallery-item">${pair.map(({ preview, original, description }) => 
+            `<a class="gallery-link" href="${original}">
+            <img
+            class="gallery-image"
+            src="${preview}"
+            data-source="${original}"
+            alt="${description}"
+            />
+            </a>`)
+        .join('')}
+        
+        </li>`
+    ).join('');
+
+
+    gallery.insertAdjacentHTML('afterbegin', imagesMarkup);
